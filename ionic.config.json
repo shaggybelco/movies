@@ -1,0 +1,8 @@
+{
+  "name": "Movies",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "d3b24e22"
+}

@@ -8,7 +8,7 @@
   <ion-list>
     <ion-item button *ngFor="let item of movie;" [routerLink]="[item.id]" routerLinkActive="router-link-active" >
       <ion-avatar slot="start">
-        <img [src]="imgbaseUrl + '/w92' + item.poster_path"/>
+        <ion-img [src]="imgbaseUrl + '/w92' + item.poster_path"></ion-img>
       </ion-avatar>
 
       <ion-label>

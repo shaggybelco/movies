@@ -1,6 +1,8 @@
 <ion-header color="success">
   <ion-toolbar>
-    <ion-buttons slot="start"><ion-back-button defaultHref="/movies"></ion-back-button></ion-buttons>
+    <ion-buttons slot="start"
+      ><ion-back-button defaultHref="/movies"></ion-back-button
+    ></ion-buttons>
     <ion-title *ngIf="movie$ |async as item">{{item.original_title}}</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,21 +11,15 @@
   <ion-card *ngIf="movie$ | async as item">
     <ion-img [src]="imgbaseUrl + '/w400' + item?.poster_path"></ion-img>
     <ion-card-header>
-      <ion-card-title>
-        {{item.title}}
-      </ion-card-title>
-      <ion-card-subtitle>
-        {{item.tagline}}
-      </ion-card-subtitle>
+      <ion-card-title> {{item.title}} </ion-card-title>
+      <ion-card-subtitle> {{item.tagline}} </ion-card-subtitle>
       <ion-text>
-        <span *ngIf="movie$|async as g">
-          <span *ngFor="let genre of item.genres; let islast = last">
-            {{genre.name}} {{!islast ? ' - ' : ''}}
-          </span>
+        <span *ngFor="let genre of item.genres; let islast = last">
+          {{genre.name}} {{!islast ? ' - ' : ''}}
         </span>
       </ion-text>
     </ion-card-header>
-     
+
     <ion-card-content>
       <ion-label color="medium">{{item.overview}}</ion-label>
 
@@ -36,10 +32,8 @@
         <ion-icon name="cash-outline" slot="start"></ion-icon>
         <ion-label>{{item.budget | currency: 'ZAR'}}</ion-label>
       </ion-item>
-
     </ion-card-content>
   </ion-card>
-
 </ion-content>
 
 <ion-footer>

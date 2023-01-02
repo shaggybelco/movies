@@ -12,6 +12,7 @@
       routerLink="{{item.id}}/{{item.original_title}}/{{item.backdrop_path}}"
       *ngFor="let item of npMv;"
       routerLinkActive="router-link-active"
+      detail="false"
     >
       <ion-avatar slot="start">
         <ion-img [src]="imgbaseUrl + '/w92' + item.poster_path"></ion-img>

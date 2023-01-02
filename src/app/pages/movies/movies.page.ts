@@ -16,6 +16,10 @@ export class MoviesPage implements OnInit {
   movie:any = [];
   currentPage = 1;
   imgbaseUrl = environment.images;
+
+    menu = ['Recommendations',
+    'Now playing',
+    'Top-rated']
   
   async loadMovies(event?: InfiniteScrollCustomEvent){
     const loading = this.loadingCtrl.create({

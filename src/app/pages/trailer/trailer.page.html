@@ -1,0 +1,26 @@
+<ng-container *ngIf="movie$ | async as item">
+  <ion-header>
+    <ion-toolbar>
+      <ion-back-button slot="start" defaultHref="/nowplaying"></ion-back-button>
+      <ion-title>{{name}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <div>
+      <ion-img [src]="imgbaseUrl + '/w1280' + item.backdrop_path"></ion-img>
+    </div>
+    <div class="bd">
+      <h1 class="tbd">Trailer</h1>
+
+      <ion-card class="vid" *ngIf="video;else novideo">
+        <youtube-embed [videoId]="video.key"></youtube-embed>
+      </ion-card>
+    </div>
+
+    <ng-template #novideo>
+      <div class="load"><ion-spinner name="dots"></ion-spinner></div>
+      <p class="load-text">Trailer not available</p>
+    </ng-template>
+  </ion-content>
+</ng-container>

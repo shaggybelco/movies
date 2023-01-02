@@ -1,4 +1,5 @@
 export interface Movies {
+  date?: {maximum: Date, minimum: Date}
   page: number;
   results: [
     {

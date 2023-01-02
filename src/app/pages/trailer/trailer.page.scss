@@ -1,0 +1,33 @@
+.vid{
+    display: flex;
+    justify-content: center;
+}
+
+.bd{
+    background-color: rgb(107, 107, 107);
+    height: 74%;
+    border-top-left-radius: 20px !important;
+    border-top-right-radius: 20px;
+    margin-top: -35px;
+    position: relative;
+}
+
+.tbd{
+    color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+}
+
+.load{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.load-text{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -9,7 +9,7 @@
 
 <ion-content>
   <ion-card *ngIf="movie$ | async as item">
-    <ion-img [src]="imgbaseUrl + '/w400' + item?.poster_path"></ion-img>
+    <ion-img [src]="imgbaseUrl + '/w780' + item?.poster_path"></ion-img>
     <ion-card-header>
       <ion-card-title> {{item.title}} </ion-card-title>
       <ion-card-subtitle> {{item.tagline}} </ion-card-subtitle>

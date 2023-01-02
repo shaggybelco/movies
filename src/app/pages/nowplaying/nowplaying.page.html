@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-back-button slot="start" defaultHref="/movies"></ion-back-button>
+    <ion-title>Now playing</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+  <ion-list>
+    <ion-item
+      button
+      routerLink="{{item.id}}/{{item.original_title}}/{{item.backdrop_path}}"
+      *ngFor="let item of npMv;"
+      routerLinkActive="router-link-active"
+    >
+      <ion-avatar slot="start">
+        <ion-img [src]="imgbaseUrl + '/w92' + item.poster_path"></ion-img>
+      </ion-avatar>
+
+      <ion-label>
+        {{item.title}}
+        <p>{{item.release_date | date: 'yyyy/MM/dd'}}</p>
+      </ion-label>
+
+      <ion-button
+        id="open-modal"
+        fill="clear"
+        slot="end"
+        ><ion-icon name="play-outline"></ion-icon
+      ></ion-button>
+    </ion-item>
+  </ion-list>
+
+  <!-- infinite scrol -->
+  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+  <!-- menu modal -->
+  <ion-modal
+    #modal
+    trigger="open-modal"
+    [initialBreakpoint]="0.25"
+    [breakpoints]="[0, 0.25, 0.5, 0.75]"
+  >
+    <ng-template>
+      <ion-content>
+       
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>

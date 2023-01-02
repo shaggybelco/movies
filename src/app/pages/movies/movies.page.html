@@ -1,12 +1,20 @@
 <ion-header color="primary">
   <ion-toolbar>
     <ion-title>Trending Movies</ion-title>
+    <ion-button id="open-modal" fill="clear" slot="end"
+      ><ion-icon color="primary" name="ellipsis-vertical-outline"></ion-icon
+    ></ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-item button *ngFor="let item of movie;" [routerLink]="[item.id]" routerLinkActive="router-link-active" >
+    <ion-item
+      button
+      *ngFor="let item of movie;"
+      [routerLink]="[item.id]"
+      routerLinkActive="router-link-active"
+    >
       <ion-avatar slot="start">
         <ion-img [src]="imgbaseUrl + '/w92' + item.poster_path"></ion-img>
       </ion-avatar>
@@ -20,7 +28,35 @@
     </ion-item>
   </ion-list>
 
+  <!-- infinite scrol -->
   <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
   </ion-infinite-scroll>
+
+  <!-- menu modal -->
+  <ion-modal
+    #modal
+    trigger="open-modal"
+    [initialBreakpoint]="0.25"
+    [breakpoints]="[0, 0.25, 0.5, 0.75]"
+  >
+    <ng-template>
+      <ion-content>
+        <ion-list>
+          <ion-item button routerLink="/nowplaying">
+            <ion-icon slot="start" name="play-circle-outline"></ion-icon>
+            <ion-label> Now playing </ion-label>
+          </ion-item>
+          <ion-item button>
+            <ion-icon slot="start" name="document-text-outline"></ion-icon>
+            <ion-label> Recommendations </ion-label>
+          </ion-item>
+          <ion-item button>
+            <ion-icon slot="start" name="happy-outline"></ion-icon>
+            <ion-label> Top-rated </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>

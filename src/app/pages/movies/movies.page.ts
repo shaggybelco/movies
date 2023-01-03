@@ -19,11 +19,12 @@ export class MoviesPage implements OnInit {
   ) {
     this.platform.backButton.subscribeWithPriority(5, () => {
       console.log('Another handler was called!');
+      alert('Another handler was called!')
     });
   
     this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
       console.log('Handler was called!');
-  
+      alert('Handler was called!')
       processNextHandler();
     });
 
@@ -65,4 +66,11 @@ export class MoviesPage implements OnInit {
       (event as InfiniteScrollCustomEvent).target.complete();
     }, 1000);
   }
+
+  handleRefresh(event: any) {
+    setTimeout(() => {
+      this.loadMovies();
+      event.target.complete();
+    }, 2000);
+  };
 }

@@ -7,11 +7,23 @@
   </ion-header>
 
   <ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+      <ion-refresher-content
+        pullingIcon="chevron-down-circle-outline"
+        pullingText="Pull to refresh"
+        refreshingSpinner="circles"
+        refreshingText="Refreshing...">
+      </ion-refresher-content>
+    </ion-refresher>
+    
     <div>
-      <ion-img [src]="imgbaseUrl + '/w1280' + item?.backdrop_path"></ion-img>
+      <ion-img *ngIf="item?.backdrop_path != null;else poster" [src]="imgbaseUrl + '/w1280' + item?.backdrop_path"></ion-img>
+      <ng-template #poster>
+        <ion-img [src]="imgbaseUrl + '/w1280' + item?.poster_path"></ion-img>
+      </ng-template>
     </div>
     <div class="bd">
-      <h1 class="tbd">Trailer</h1>
+      <h3 class="tbd">{{official}}</h3>
 
       <ion-card class="vid" *ngIf="video;else novideo">
         <youtube-embed [videoId]="video.key"></youtube-embed>
@@ -20,7 +32,7 @@
 
     <ng-template #novideo>
       <div class="load"><ion-spinner name="dots"></ion-spinner></div>
-      <p class="load-text">Trailer not available</p>
+      <p class="load-text">The trailer is not available</p>
     </ng-template>
   </ion-content>
 </ng-container>

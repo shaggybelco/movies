@@ -30,4 +30,8 @@ export class MoviesService {
   getVideos(id: any): Observable<any>{
     return this.http.get(`${environment.baseUrl}/movie/${id}/videos?api_key=${environment.apiKey}`)
   }
+
+  getUpcoming(page = 1): Observable<any>{ 
+    return this.http.get(`${environment.baseUrl}/movie/upcoming?api_key=${environment.apiKey}&page=${page}`)
+  }
 }

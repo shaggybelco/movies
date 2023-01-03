@@ -5,7 +5,16 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen="true">
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
   <ion-list>
     <ion-item
       button
@@ -24,7 +33,6 @@
       </ion-label>
 
       <ion-button
-        id="open-modal"
         fill="clear"
         slot="end"
         ><ion-icon name="play-outline"></ion-icon
@@ -36,18 +44,4 @@
   <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
   </ion-infinite-scroll>
-
-  <!-- menu modal -->
-  <ion-modal
-    #modal
-    trigger="open-modal"
-    [initialBreakpoint]="0.25"
-    [breakpoints]="[0, 0.25, 0.5, 0.75]"
-  >
-    <ng-template>
-      <ion-content>
-       
-      </ion-content>
-    </ng-template>
-  </ion-modal>
 </ion-content>

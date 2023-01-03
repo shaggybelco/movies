@@ -26,20 +26,18 @@ export class NowplayingPage implements OnInit {
         this.npMv.push(...res.results);
 
         event?.target.complete();
-        console.log(res.results);
+        // console.log(res.results);
       },
     });
   }
 
-  getVideos(id: any){
-    this.movies.getVideos(id).subscribe(
-      {
-        next: (res: any)=>{
-          console.log(res)
-        }
-      }
-    )
-  }
+  handleRefresh(event: any) {
+    setTimeout(() => {
+      this.loadMovies();
+      event.target.complete();
+    }, 2000);
+  };
+
 
   onIonInfinite(event: any) {
     this.currentPage++;

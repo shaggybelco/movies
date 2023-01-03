@@ -22,7 +22,19 @@ const routes: Routes = [
   {
     path: 'nowplaying/:id/:name',
     loadChildren: () => import('./pages/trailer/trailer.module').then( m => m.TrailerPageModule)
+  },  {
+    path: 'upcoming',
+    loadChildren: () => import('./pages/upcoming/upcoming.module').then( m => m.UpcomingPageModule)
+  },
+  {
+    path: 'recommendations',
+    loadChildren: () => import('./pages/recommendations/recommendations.module').then( m => m.RecommendationsPageModule)
+  },
+  {
+    path: 'toprated',
+    loadChildren: () => import('./pages/toprated/toprated.module').then( m => m.TopratedPageModule)
   }
+
 
 
 ];

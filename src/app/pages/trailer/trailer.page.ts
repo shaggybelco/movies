@@ -23,16 +23,38 @@ export class TrailerPage implements OnInit {
 
   public movie$: Observable<any> = this.movies.getMoviesDetails(this.id);
 
+  official= 'Official Trailer';
+  hold: any = []
+
   ngOnInit(): void {
+      this.loadMovies();
+  }
+
+  loadMovies(){
     this.trailer$.subscribe((res: any) => {
       this.vid = res.results;
       this.vid.forEach((element: any) => {
         console.log(element)
-        if(element.name === 'Official Trailer'){
-          console.log('hiyoooooooo')
+        if(element.name.toLowerCase() === 'official trailer'){
           this.video = element
+          this.official = 'Official Trailer'
         }
+
+        this.hold = element;
       });
     });
+
+    if(!this.video){
+      this.video = this.hold;
+      this.official = 'This is not an offical trailer'
+    }
   }
+
+  handleRefresh(event: any) {
+    setTimeout(() => {
+      this.loadMovies();
+      event.target.complete();
+    }, 2000);
+  };
+
 }

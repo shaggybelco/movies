@@ -14,7 +14,6 @@ export class TrailerPage implements OnInit {
 
   id = this.route.snapshot.paramMap.get('id');
   name = this.route.snapshot.paramMap.get('name');
-  bd = this.route.snapshot.paramMap.get('bd')
 
   public trailer$ = this.movies.getVideos(this.id);
 

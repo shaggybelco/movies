@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-back-button slot="start" defaultHref="/movies"></ion-back-button>
-    <ion-title>Now playing</ion-title>
+    <ion-title>Now playing in Cinema</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -9,7 +9,7 @@
   <ion-list>
     <ion-item
       button
-      routerLink="{{item.id}}/{{item.original_title}}/{{item.backdrop_path}}"
+      routerLink="{{item.id}}/{{item.original_title}}"
       *ngFor="let item of npMv;"
       routerLinkActive="router-link-active"
       detail="false"
@@ -19,7 +19,7 @@
       </ion-avatar>
 
       <ion-label>
-        {{item.title}}
+        <h1>{{item.title}}</h1>
         <p>{{item.release_date | date: 'yyyy/MM/dd'}}</p>
       </ion-label>
 

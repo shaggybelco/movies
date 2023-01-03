@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { InfiniteScrollCustomEvent, LoadingController } from '@ionic/angular';
+import { Component, OnInit, Optional } from '@angular/core';
+import { App } from '@capacitor/app';
+import { InfiniteScrollCustomEvent, IonRouterOutlet, LoadingController, Platform } from '@ionic/angular';
 import { Movies } from 'src/app/Models/movie.model';
 import { MoviesService } from 'src/app/services/movies.service';
 import { environment } from 'src/environments/environment';
@@ -10,31 +11,45 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./movies.page.scss'],
 })
 export class MoviesPage implements OnInit {
+  constructor(
+    private movies: MoviesService,
+    private loadingCtrl: LoadingController,
+    private platform: Platform,
+    @Optional() private routerOutlet: IonRouterOutlet
+  ) {
+    this.platform.backButton.subscribeWithPriority(5, () => {
+      console.log('Another handler was called!');
+    });
+  
+    this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
+      console.log('Handler was called!');
+  
+      processNextHandler();
+    });
+  }
 
-  constructor(private movies: MoviesService, private loadingCtrl: LoadingController) { }
-
-  movie:any = [];
+  movie: any = [];
   currentPage = 1;
   imgbaseUrl = environment.images;
 
-    menu = ['Recommendations',
-    'Now playing',
-    'Top-rated']
-  
-  async loadMovies(event?: InfiniteScrollCustomEvent){
+  menu = ['Recommendations', 'Now playing', 'Top-rated'];
+
+  async loadMovies(event?: InfiniteScrollCustomEvent) {
     const loading = this.loadingCtrl.create({
       message: 'Loading',
-      spinner: 'bubbles'
+      spinner: 'bubbles',
     });
-    (await loading).present
+    (await loading).present;
 
-    this.movies.getTopRatedMovies(this.currentPage).subscribe({next: async (res: Movies)=>{
-      (await loading).dismiss()
-      // this.movie = [...this.movie, ...res.results];
-      this.movie.push(...res.results)
+    this.movies.getTopRatedMovies(this.currentPage).subscribe({
+      next: async (res: Movies) => {
+        (await loading).dismiss();
+        // this.movie = [...this.movie, ...res.results];
+        this.movie.push(...res.results);
 
-      event?.target.complete();
-    }})
+        event?.target.complete();
+      },
+    });
   }
 
   ngOnInit() {
@@ -48,5 +63,4 @@ export class MoviesPage implements OnInit {
       (event as InfiniteScrollCustomEvent).target.complete();
     }, 1000);
   }
-
 }

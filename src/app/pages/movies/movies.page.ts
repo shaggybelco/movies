@@ -15,7 +15,7 @@ export class MoviesPage implements OnInit {
     private movies: MoviesService,
     private loadingCtrl: LoadingController,
     private platform: Platform,
-    @Optional() private routerOutlet: IonRouterOutlet
+    @Optional() private routerOutlet: IonRouterOutlet,
   ) {
     this.platform.backButton.subscribeWithPriority(5, () => {
       console.log('Another handler was called!');
@@ -26,6 +26,8 @@ export class MoviesPage implements OnInit {
   
       processNextHandler();
     });
+
+
   }
 
   movie: any = [];

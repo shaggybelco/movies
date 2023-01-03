@@ -10,15 +10,14 @@
 <ion-content>
   <ion-card *ngIf="movie$ | async as item">
     <ion-img [src]="imgbaseUrl + '/w780' + item?.poster_path"></ion-img>
+    <ion-fab horizontal="center" vertical="center">
+      <ion-fab-button routerLink="/nowplaying/{{id}}/{{item.original_title}}">
+        <ion-icon name="play-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
     <ion-card-header>
       <ion-card-title>
         {{item.title}}
-        <ion-fab horizontal="end" vertical="top">
-          <ion-fab-button routerLink="/nowplaying/{{id}}/{{item.original_title}}">
-            <ion-icon name="play-outline"></ion-icon>
-          </ion-fab-button>
-          
-        </ion-fab>
       </ion-card-title>
       <ion-card-subtitle> {{item.tagline}} </ion-card-subtitle>
       <ion-text>

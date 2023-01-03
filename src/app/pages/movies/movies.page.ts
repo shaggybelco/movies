@@ -17,14 +17,19 @@ export class MoviesPage implements OnInit {
     private platform: Platform,
     @Optional() private routerOutlet: IonRouterOutlet,
   ) {
+
+    this.platform.backButton.subscribeWithPriority(-1, () => {
+      if (!this.routerOutlet.canGoBack()) {
+        App.exitApp();
+      }
+    });
+
     this.platform.backButton.subscribeWithPriority(5, () => {
       console.log('Another handler was called!');
-      alert('Another handler was called!')
     });
   
     this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
       console.log('Handler was called!');
-      alert('Handler was called!')
       processNextHandler();
     });
 

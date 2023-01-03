@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-back-button slot="start" defaultHref="/movies"></ion-back-button>
-    <ion-title>Now playing in Cinema</ion-title>
+    <ion-title>Now playing</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -24,7 +24,7 @@
       detail="false"
     >
       <ion-avatar slot="start">
-        <ion-img [src]="imgbaseUrl + '/w92' + item.poster_path"></ion-img>
+        <ion-img lazy [src]="imgbaseUrl + '/w92' + item.poster_path"></ion-img>
       </ion-avatar>
 
       <ion-label>

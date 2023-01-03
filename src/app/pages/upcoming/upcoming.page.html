@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/movies"></ion-back-button>
     </ion-buttons>
-    <ion-title>Upcoming</ion-title>
+    <ion-title>Upcoming movies</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -19,13 +19,13 @@
   </ion-refresher>
 
   <ion-card button *ngFor="let item of upcoming" routerLink="/nowplaying/{{item.id}}/{{item.original_title}}">
-    <ion-img *ngIf="item.backdrop_path != null;else poster" [src]="imgbaseUrl + '/w1280' + item.backdrop_path"></ion-img>
+    <ion-img *ngIf="item.backdrop_path != null;else poster" lazy [src]="imgbaseUrl + '/w1280' + item.backdrop_path"></ion-img>
     <ng-template #poster>
-      <ion-img [src]="imgbaseUrl + '/w780' + item.poster_path"></ion-img>
+      <ion-img lazy [src]="imgbaseUrl + '/w780' + item.poster_path"></ion-img>
     </ng-template>
     <div class="hold">
       <ion-avatar class="avt">
-        <ion-img [src]="imgbaseUrl + '/w92' + item.poster_path"></ion-img>
+        <ion-img lazy [src]="imgbaseUrl + '/w92' + item.poster_path"></ion-img>
       </ion-avatar>
     </div>
     <ion-card-title style="text-align: center; padding-top: 8px;">{{item.title}}</ion-card-title>

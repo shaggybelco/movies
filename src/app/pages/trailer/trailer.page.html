@@ -17,9 +17,9 @@
     </ion-refresher>
     
     <div>
-      <ion-img *ngIf="item?.backdrop_path != null;else poster" [src]="imgbaseUrl + '/w1280' + item?.backdrop_path"></ion-img>
+      <ion-img *ngIf="item?.backdrop_path != null;else poster" lazy [src]="imgbaseUrl + '/w1280' + item?.backdrop_path"></ion-img>
       <ng-template #poster>
-        <ion-img [src]="imgbaseUrl + '/w1280' + item?.poster_path"></ion-img>
+        <ion-img lazy [src]="imgbaseUrl + '/w1280' + item?.poster_path"></ion-img>
       </ng-template>
     </div>
     <div class="bd">

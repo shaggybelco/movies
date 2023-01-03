@@ -19,7 +19,7 @@ export class MoviesPage implements OnInit {
   ) {
 
     this.platform.backButton.subscribeWithPriority(-1, () => {
-      if (!this.routerOutlet.canGoBack()) {
+      if (!this.routerOutlet.canGoBack() && window.confirm('Do you want to exit the app?')) {
         App.exitApp();
       }
     });

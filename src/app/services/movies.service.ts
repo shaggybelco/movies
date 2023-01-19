@@ -34,4 +34,10 @@ export class MoviesService {
   getUpcoming(page = 1): Observable<any>{ 
     return this.http.get(`${environment.baseUrl}/movie/upcoming?api_key=${environment.apiKey}&page=${page}`)
   }
+
+  getTopMovies(page=1): Observable<any>{
+    return this.http.get(
+      `${environment.baseUrl}/movie/top_rated?api_key=${environment.apiKey}&page=${page}`
+    );
+  }
 }

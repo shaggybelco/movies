@@ -1,7 +1,8 @@
 {
   "name": "Movies",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular",
   "id": "d3b24e22"

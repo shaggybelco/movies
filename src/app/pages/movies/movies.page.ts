@@ -1,6 +1,11 @@
 import { Component, OnInit, Optional } from '@angular/core';
 import { App } from '@capacitor/app';
-import { InfiniteScrollCustomEvent, IonRouterOutlet, LoadingController, Platform } from '@ionic/angular';
+import {
+  InfiniteScrollCustomEvent,
+  IonRouterOutlet,
+  LoadingController,
+  Platform,
+} from '@ionic/angular';
 import { Movies } from 'src/app/Models/movie.model';
 import { MoviesService } from 'src/app/services/movies.service';
 import { environment } from 'src/environments/environment';
@@ -17,14 +22,14 @@ export class MoviesPage implements OnInit {
     private platform: Platform,
     @Optional() private routerOutlet: IonRouterOutlet,
   ) {
-
     this.platform.backButton.subscribeWithPriority(-1, () => {
-      if (!this.routerOutlet.canGoBack() && window.confirm('Do you want to exit the app?')) {
+      if (
+        !this.routerOutlet.canGoBack() &&
+        window.confirm('Do you want to exit the app?')
+      ) {
         App.exitApp();
       }
     });
-
-
   }
 
   movie: any = [];
@@ -55,6 +60,7 @@ export class MoviesPage implements OnInit {
     this.loadMovies();
   }
 
+
   onIonInfinite(event: any) {
     this.currentPage++;
     this.loadMovies(event);
@@ -68,5 +74,5 @@ export class MoviesPage implements OnInit {
       this.loadMovies();
       event.target.complete();
     }, 2000);
-  };
+  }
 }
